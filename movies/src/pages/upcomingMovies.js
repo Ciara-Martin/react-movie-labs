@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import PageTemplate from '../components/templateMovieListPage'
+import React, { useEffect, useState } from "react";
+import PageTemplate from '../components/templateMovieListPage';
 import { getUpcoming } from "../api/tmdb-api";
+import { useQuery } from 'react-query';
+import Spinner from '../components/spinner';
 
 const UpcomingMoviesPage = (props) => {
     const [upcoming, setUpcoming] = useState([]);
