@@ -11,6 +11,8 @@ import SiteHeader from './components/siteHeader';
 import UpcomingMoviesPage from "./pages/upcomingMovies";
 import MoviesContextProvider from "./contexts/moviesContext";
 
+
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
