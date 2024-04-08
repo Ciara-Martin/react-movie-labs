@@ -39,7 +39,7 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         sx={{...root}}
       >
         <li>
-          <Chip label="Genres" sx={{...chip}} color="primary" />
+          <Chip label="Genres" sx={{...chip}} style={{ color: '#ad96e0' }} />
         </li>
         {movie.genres.map((g) => (
           <li key={g.name}>
@@ -60,7 +60,7 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         <Chip label={`Released: ${movie.release_date}`} />
       </Paper>
       <Fab
-        color="secondary"
+        style={{ background: '#ad96e0' }}
         variant="extended"
         onClick={() =>setDrawerOpen(true)}
         sx={{

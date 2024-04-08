@@ -202,7 +202,7 @@ const context = useContext(MoviesContext);
           <Button
             type="submit"
             variant="contained"
-            color="primary"
+            style={{ background: '#ad96e0' }}
             sx={styles.submit}
           >
             Submit
@@ -210,7 +210,7 @@ const context = useContext(MoviesContext);
           <Button
             type="reset"
             variant="contained"
-            color="secondary"
+            style={{ background: 'black' }}
             sx={styles.submit}
             onClick={() => {
               reset({
