@@ -1,35 +1,32 @@
 import React from "react";
-import PageTemplate from "../components/templateMovieListPage";
-import { useQuery } from "react-query";
 import { getUpcoming } from "../api/tmdb-api";
-import Spinner from "../components/spinner";
+import PageTemplate from '../components/templateMovieListPage';
+import { useQuery } from 'react-query';
+import Spinner from '../components/spinner';
+import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 
-    const UpcomingMoviesPage = () => {
-      const { data: upcoming, isLoading, isError, error } = useQuery(
-        "upcomingMovies",
-        getUpcoming
-      );
-  
-      const addToFavorites = (movieId) => {
-        // Logic to add movie to favorites
-        console.log("Adding movie to favorites:", movieId);
-      };
+const UpcomingPage = (props) => {
 
-      if (isLoading) {
-        return <Spinner />;
-      }
-    
-      if (isError) {
-        return <div>Error: {error.message}</div>;
-      }
-    
-      return (
-        <PageTemplate
-          title="Discover Upcoming Movies"
-          movies={upcoming}
-          selectFavorite={addToFavorites}
-        />
-      );
-    };
-    
-    export default UpcomingMoviesPage;
+  const {  data, error, isLoading, isError }  = useQuery('upcoming', getUpcoming)
+
+  if (isLoading) {
+    return <Spinner />
+  }
+
+  if (isError) {
+    return <h1>{error.message}</h1>
+  }  
+  const upcoming = data.results;
+
+
+  return (
+    <PageTemplate
+      title="Upcoming Movies"
+      movies={upcoming}
+      action={(movie) => {
+        return <AddToFavoritesIcon movie={movie} />
+      }}
+    />
+);
+};
+export default UpcomingPage;
