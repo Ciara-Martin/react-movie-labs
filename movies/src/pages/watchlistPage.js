@@ -2,18 +2,20 @@ import React, { useContext } from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { MoviesContext } from "../contexts/moviesContext";
 import { useQueries } from "react-query";
-import { getWatchlist } from "../api/tmdb-api";
+import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import RemoveFromWatchlist from "../components/cardIcons/removeFromWatchlist";
 
 const WatchlistPage = () => {
-  const {favorites: movieIds } = useContext(MoviesContext);
+  const {watchlists: movieIds } = useContext(MoviesContext);
 
   // Create an array of queries and run in parallel.
   const watchlistQueries = useQueries(
     movieIds.map((movieId) => {
       return {
         queryKey: ["watchlist", { id: movieId }],
-        queryFn: getWatchlist,
+        queryFn: getMovie,
       };
     })
   );
@@ -33,11 +35,17 @@ const WatchlistPage = () => {
 
   return (
     <PageTemplate
-      title="Upcoming Movies"
-      movies={upcoming}
+      title="Watchlist"
+      movies={watchlist}
       action={(movie) => {
-        return <AddToFavoritesIcon movie={movie} />
+        return( 
+        <>
+        <RemoveFromWatchlist movie={movie} />
+        </>
+      );
       }}
     />
 );
 };
+
+export default WatchlistPage;

@@ -10,9 +10,10 @@ import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader';
 import UpcomingMoviesPage from "./pages/upcomingMovies";
 import TopRatedPage from "./pages/topRatedPage";
+import WatchlistPage from "./pages/watchlistPage";
 import PopularMoviesPage from "./pages/popularMoviesPage";
 import MoviesContextProvider from "./contexts/moviesContext";
-import AddMovieReviewPage from './pages/addMovieReviewPage'
+import AddMovieReviewPage from './pages/addMovieReviewPage';
 
 
 const queryClient = new QueryClient({
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/movies/upcoming" element={ <UpcomingMoviesPage /> } />
           <Route path="/movies/toprated" element={ <TopRatedPage /> } />
           <Route path="/movies/popularmovies" element={ <PopularMoviesPage /> } />
+          <Route path="/movies/watchlist" element={ <WatchlistPage /> } />
           <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
           <Route path="/movies/:id" element={<MoviePage />} />
           <Route path="/" element={<HomePage />} />
