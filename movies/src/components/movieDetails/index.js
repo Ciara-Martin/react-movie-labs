@@ -21,18 +21,20 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie }) => {  // Don't miss this!
+const MovieDetails = ({ movie }) => {  
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <>
-      <Typography variant="h5" component="h3">
-        Overview
-      </Typography>
+      <Paper elevation={1} style={{ padding: 20, marginBottom: 20 }}>
+        <Typography variant="h4" component="h3">
+          Overview
+        </Typography>
 
-      <Typography variant="h6" component="p">
-        {movie.overview}
-      </Typography>
+        <Typography variant="h6" component="p">
+          {movie.overview}
+        </Typography>
+      </Paper>
 
       <Paper 
         component="ul" 
