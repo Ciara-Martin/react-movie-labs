@@ -14,13 +14,15 @@ This is a react app created to allow users to get information on all movies in c
 + Watchlist Page
 + Add to Watchlist button on Upcoming Movies
 + Updated Colour Scheme (Buttons, Text, Header etc.)
-+ Movie Overview in it's own "paper" component
++ Movie Overview in it's own "paper" component.
++ Movie recommendations added to Movie Details page and put in a paper component.
 
 ## API endpoints.
 
 + Upcoming Page - movie/upcoming
 + Top Rated Page - movie/top_rated
 + Popular Movies Page - movie/popular
++ Recommendations- movie/${movie.id}/recommendations
 
 ## Routing.
 
