@@ -46,14 +46,13 @@ useEffect(() => {
   return (
     <>
       <Paper elevation={1} style={{ padding: 20, marginBottom: 20 }}>
-        <Typography variant="h4" component="h3">
-          Overview
-        </Typography>
-
-        <Typography variant="h6" component="p">
-          {movie.overview}
-        </Typography>
-      </Paper>
+      <Typography variant="h4" component="h3" style={{ marginBottom: 20 }}>
+        Overview
+      </Typography>
+      <Typography variant="body1" component="p">
+        {movie.overview}
+      </Typography>
+    </Paper>
 
       <Paper 
         component="ul" 
@@ -97,19 +96,21 @@ useEffect(() => {
         <MovieReviews movie={movie} />
       </Drawer>
 
-      <Typography varient="h5" component="h3">
-        Recommendations
-      </Typography>
-      <div style={{display: "flex", flewWrap: "wrap", gap: "10px"}}>
-        {recommendations.map((recommendation)=> (
-          <img
-          key={recommendation.id}
-          src={`https://image.tmdb.org/t/p/w300${recommendation.poster_path}`}
-          alt={recommendation.title}
-          style={{ width: "200px", height: "300px"}}
-          />
-        ))}
-      </div>
+      <Paper elevation={1} style={{ padding: 20, marginBottom: 20 }}>
+        <Typography variant="h5" component="h3" style={{ marginBottom: 20 }}>
+          Recommendations
+        </Typography>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+          {recommendations.map((recommendation) => (
+            <img
+              key={recommendation.id}
+              src={`https://image.tmdb.org/t/p/w300${recommendation.poster_path}`}
+              alt={recommendation.title}
+              style={{ width: "200px", height: "300px", borderRadius: "8px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}
+            />
+          ))}
+        </div>
+      </Paper>
       </>
   );
 };
