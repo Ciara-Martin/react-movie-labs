@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -23,6 +23,25 @@ const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie }) => {  
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [recommendations, setRecommendations] = useState([]);
+
+useEffect(() => {
+  const fetchRecommendations = async () => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${movie.id}/recommendations?api_key=${process.env.REACT_APP_TMDB_KEY}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch recommendations");
+      }
+      const data = await response.json();
+      setRecommendations(data.results);
+    } catch (error) {
+      console.error("Error fetching recmmendations:", error);
+    }
+  };
+  fetchRecommendations();
+}, [movie.id]);
 
   return (
     <>
@@ -77,6 +96,20 @@ const MovieDetails = ({ movie }) => {
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
+
+      <Typography varient="h5" component="h3">
+        Recommendations
+      </Typography>
+      <div style={{display: "flex", flewWrap: "wrap", gap: "10px"}}>
+        {recommendations.map((recommendation)=> (
+          <img
+          key={recommendation.id}
+          src={`https://image.tmdb.org/t/p/w300${recommendation.poster_path}`}
+          alt={recommendation.title}
+          style={{ width: "200px", height: "300px"}}
+          />
+        ))}
+      </div>
       </>
   );
 };
